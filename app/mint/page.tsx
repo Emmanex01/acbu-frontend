@@ -135,7 +135,7 @@ export default function MintPage() {
         setStep("confirm");
     };
     const handleBurnConfirm = () => {
-        router.push(`/burn?amount=${burnAmount}&currency=${selectedFiatCurrency}`);
+        router.replace(`/burn?amount=${burnAmount}&currency=${selectedFiatCurrency}`);
     };
     const handleExecuteMint = async () => {
         if (!fiatAmount || parseFloat(fiatAmount) <= 0 || !selectedFiatCurrency)

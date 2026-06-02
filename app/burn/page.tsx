@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 import React, { useState, Suspense } from "react";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import { PageContainer } from "@/components/layout/page-container";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -76,6 +76,7 @@ const formatCurrency = (amount: string, currency: string) => {
 
 function BurnPageContent() {
   const opts = useApiOpts();
+  const router = useRouter();
   const searchParams = useSearchParams();
   const { userId, stellarAddress } = useAuth();
   const kit = useStellarWalletsKit();
@@ -211,6 +212,7 @@ function BurnPageContent() {
       );
       setTxId(res.transaction_id);
       form.reset({ ...values, acbuAmount: "" });
+      router.replace('/mint');
     } catch (e) {
       setApiError(e);
     } finally {
